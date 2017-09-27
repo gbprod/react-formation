@@ -1,3 +1,6 @@
-import GifLoader from './GifLoader'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Chat from './components/Chat';
 
-GifLoader.loadGif('cat').then(gif => console.log(gif))
+
+ReactDOM.render(<Chat></Chat>, document.getElementById('app'));
