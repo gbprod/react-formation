@@ -12,12 +12,12 @@ class MessageBar extends Component {
 
     handleKeyPress = (event) => {
         if(event.key == 'Enter'){
-            console.log(this.state.message)
+            this.props.addMessage(this.state.message);
         }
     }
 
-    submit = (e) => {
-        console.log(this.state.message);
+    handleSubmit = (e) => {
+        this.props.addMessage(this.state.message);
     }
 
     render() {
@@ -33,7 +33,7 @@ class MessageBar extends Component {
                 <input
                     type="submit"
                     value="Envoyer"
-                    onClick={this.submit}
+                    onClick={this.handleSubmit}
                 />
             </div>
         )

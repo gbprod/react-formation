@@ -21185,6 +21185,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
@@ -21201,6 +21203,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var chatStyle = {
     borberRadius: 10,
     fontFamily: "Monerrat",
@@ -21211,21 +21219,56 @@ var chatStyle = {
     flexDirection: 'column'
 };
 
-var Chat = function () {
-    _newArrowCheck(undefined, undefined);
+var Chat = function (_Component) {
+    _inherits(Chat, _Component);
 
-    return _react2.default.createElement(
-        'div',
-        { style: chatStyle },
-        _react2.default.createElement(
-            'h1',
-            null,
-            'Joli Chat'
-        ),
-        _react2.default.createElement(_MessageList2.default, null),
-        _react2.default.createElement(_MessageBar2.default, null)
-    );
-}.bind(undefined);
+    function Chat(props) {
+        var _this2 = this;
+
+        _classCallCheck(this, Chat);
+
+        var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
+
+        Object.defineProperty(_this, 'addMessage', {
+            enumerable: true,
+            writable: true,
+            value: function value(message) {
+                _newArrowCheck(this, _this2);
+
+                _this.setState({
+                    messages: _this.state.messages.concat({
+                        'username': 'gbprod',
+                        'message': message
+                    })
+                });
+
+                console.log(_this.state.messages);
+            }.bind(this)
+        });
+
+        _this.state = { messages: [] };
+        return _this;
+    }
+
+    _createClass(Chat, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { style: chatStyle },
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Joli Chat'
+                ),
+                _react2.default.createElement(_MessageList2.default, null),
+                _react2.default.createElement(_MessageBar2.default, { addMessage: this.addMessage })
+            );
+        }
+    }]);
+
+    return Chat;
+}(_react.Component);
 
 exports.default = Chat;
 
@@ -21406,17 +21449,17 @@ var MessageBar = function (_Component) {
                 _newArrowCheck(this, _this2);
 
                 if (event.key == 'Enter') {
-                    console.log(_this.state.message);
+                    _this.props.addMessage(_this.state.message);
                 }
             }.bind(this)
         });
-        Object.defineProperty(_this, 'submit', {
+        Object.defineProperty(_this, 'handleSubmit', {
             enumerable: true,
             writable: true,
             value: function value(e) {
                 _newArrowCheck(this, _this2);
 
-                console.log(_this.state.message);
+                _this.props.addMessage(_this.state.message);
             }.bind(this)
         });
 
@@ -21440,7 +21483,7 @@ var MessageBar = function (_Component) {
                 _react2.default.createElement('input', {
                     type: 'submit',
                     value: 'Envoyer',
-                    onClick: this.submit
+                    onClick: this.handleSubmit
                 })
             );
         }
