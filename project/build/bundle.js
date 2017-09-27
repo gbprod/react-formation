@@ -21238,11 +21238,9 @@ var Chat = function (_Component) {
                 _this.setState({
                     messages: _this.state.messages.concat({
                         'username': 'gbprod',
-                        'message': message
+                        'body': message
                     })
                 });
-
-                console.log(_this.state.messages);
             }.bind(this)
         });
 
@@ -21261,7 +21259,7 @@ var Chat = function (_Component) {
                     null,
                     'Joli Chat'
                 ),
-                _react2.default.createElement(_MessageList2.default, null),
+                _react2.default.createElement(_MessageList2.default, { messages: this.state.messages }),
                 _react2.default.createElement(_MessageBar2.default, { addMessage: this.addMessage })
             );
         }
@@ -21306,15 +21304,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MessageList = function (_Component) {
     _inherits(MessageList, _Component);
 
-    function MessageList(props) {
+    function MessageList() {
         _classCallCheck(this, MessageList);
 
-        var _this = _possibleConstructorReturn(this, (MessageList.__proto__ || Object.getPrototypeOf(MessageList)).call(this, props));
-
-        _this.state = {
-            "messages": [{ "username": "gbprod", "body": "Lorem Ipsum" }, { "username": "gbprod 2", "body": "Lorem Ipsum 2" }, { "username": "gbprod 3", "body": "Lorem Ipsum 3" }, { "username": "gbprod 4", "body": "Lorem Ipsum 4" }]
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (MessageList.__proto__ || Object.getPrototypeOf(MessageList)).apply(this, arguments));
     }
 
     _createClass(MessageList, [{
@@ -21325,7 +21318,7 @@ var MessageList = function (_Component) {
             return _react2.default.createElement(
                 'ul',
                 null,
-                this.state.messages.map(function (message, i) {
+                this.props.messages.map(function (message, i) {
                     _newArrowCheck(this, _this2);
 
                     return _react2.default.createElement(_MessageItem2.default, { key: i, username: message.username, body: message.body });
@@ -21449,7 +21442,7 @@ var MessageBar = function (_Component) {
                 _newArrowCheck(this, _this2);
 
                 if (event.key == 'Enter') {
-                    _this.props.addMessage(_this.state.message);
+                    _this.send(_this.state.message);
                 }
             }.bind(this)
         });
@@ -21459,7 +21452,7 @@ var MessageBar = function (_Component) {
             value: function value(e) {
                 _newArrowCheck(this, _this2);
 
-                _this.props.addMessage(_this.state.message);
+                _this.send(_this.state.message);
             }.bind(this)
         });
 
@@ -21468,6 +21461,12 @@ var MessageBar = function (_Component) {
     }
 
     _createClass(MessageBar, [{
+        key: 'send',
+        value: function send(message) {
+            this.props.addMessage(this.state.message);
+            this.setState({ message: '' });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(

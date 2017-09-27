@@ -22,7 +22,7 @@ class Chat extends Component{
         this.setState({
             messages: this.state.messages.concat({
                 'username': 'gbprod',
-                'message': message
+                'body': message
             })
         });
     }
@@ -31,8 +31,8 @@ class Chat extends Component{
         return (
             <div style={chatStyle}>
                 <h1>Joli Chat</h1>
-                <MessageList />
-                <MessageBar addMessage={this.addMessage}/>
+                <MessageList messages={this.state.messages} />
+                <MessageBar addMessage={this.addMessage} />
             </div>
         );
     }
