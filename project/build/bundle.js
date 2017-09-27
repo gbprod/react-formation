@@ -21275,6 +21275,36 @@ var MessageList = function (_Component) {
     }
 
     _createClass(MessageList, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            console.log('componentWillMount');
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log('componentDidMount');
+        }
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            console.log('componentWillReceiveProps', { nextProps: nextProps });
+        }
+    }, {
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate(nextProps, nextState) {
+            console.log('componentWillUpdate', { nextProps: nextProps, nextState: nextState });
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            console.log('componentDidUpdate', { prevProps: prevProps, prevState: prevState });
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('componentWillUnmount');
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
