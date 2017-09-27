@@ -21275,36 +21275,6 @@ var MessageList = function (_Component) {
     }
 
     _createClass(MessageList, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            console.log('componentWillMount');
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            console.log('componentDidMount');
-        }
-    }, {
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps(nextProps) {
-            console.log('componentWillReceiveProps', { nextProps: nextProps });
-        }
-    }, {
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate(nextProps, nextState) {
-            console.log('componentWillUpdate', { nextProps: nextProps, nextState: nextState });
-        }
-    }, {
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate(prevProps, prevState) {
-            console.log('componentDidUpdate', { prevProps: prevProps, prevState: prevState });
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            console.log('componentWillUnmount');
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
@@ -21394,6 +21364,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
@@ -21402,16 +21374,80 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
 
-var MessageBar = function () {
-    _newArrowCheck(undefined, undefined);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement("input", { type: "text", placeholder: "Votre message" }),
-        _react2.default.createElement("input", { type: "submit", value: "Envoyer" })
-    );
-}.bind(undefined);
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MessageBar = function (_Component) {
+    _inherits(MessageBar, _Component);
+
+    function MessageBar(props) {
+        var _this2 = this;
+
+        _classCallCheck(this, MessageBar);
+
+        var _this = _possibleConstructorReturn(this, (MessageBar.__proto__ || Object.getPrototypeOf(MessageBar)).call(this, props));
+
+        Object.defineProperty(_this, 'handleChange', {
+            enumerable: true,
+            writable: true,
+            value: function value(e) {
+                _newArrowCheck(this, _this2);
+
+                _this.setState({ message: e.target.value });
+            }.bind(this)
+        });
+        Object.defineProperty(_this, 'handleKeyPress', {
+            enumerable: true,
+            writable: true,
+            value: function value(event) {
+                _newArrowCheck(this, _this2);
+
+                if (event.key == 'Enter') {
+                    console.log(_this.state.message);
+                }
+            }.bind(this)
+        });
+        Object.defineProperty(_this, 'submit', {
+            enumerable: true,
+            writable: true,
+            value: function value(e) {
+                _newArrowCheck(this, _this2);
+
+                console.log(_this.state.message);
+            }.bind(this)
+        });
+
+        _this.state = { message: '' };
+        return _this;
+    }
+
+    _createClass(MessageBar, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement('input', {
+                    type: 'text',
+                    placeholder: 'Votre message',
+                    value: this.state.message,
+                    onChange: this.handleChange,
+                    onKeyPress: this.handleKeyPress
+                }),
+                _react2.default.createElement('input', {
+                    type: 'submit',
+                    value: 'Envoyer',
+                    onClick: this.submit
+                })
+            );
+        }
+    }]);
+
+    return MessageBar;
+}(_react.Component);
 
 exports.default = MessageBar;
 
