@@ -17,14 +17,14 @@ class MessageBar extends Component {
 
   handleKeyPress = (event) => {
       if(event.key == 'Enter') {
-        this.props.handleMessageSubmit(this.state.message);
+        this.props.onAddMessage(this.state.message, 'me');
         this.setState({ message: '' });
       }
   }
 
   handleSubmit = () => {
     if (this.state.message !== '') {
-      this.props.handleMessageSubmit(this.state.message);
+      this.props.onAddMessage(this.state.message, 'me');
       this.setState({ message: '' });
     }
   }
@@ -41,7 +41,7 @@ class MessageBar extends Component {
 }
 
 MessageBar.propTypes = {
-  handleMessageSubmit: PropTypes.func.isRequired,
+  onAddMessage: PropTypes.func.isRequired,
 };
 
 export default MessageBar;
