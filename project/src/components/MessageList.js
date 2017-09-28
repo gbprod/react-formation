@@ -1,18 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import MessageItem from './MessageItem';
 
-class MessageList extends Component {
-    render() {
-        return (
-            <ul>
-                {
-                    this.props.messages.map((message, i) => {
-                        return <MessageItem key={i} username={message.username} body={message.body} />;
-                    })
-                }
-            </ul>
-        )
-    }
+const MessageList = ({messages}) => {
+  return (<ul style={{borderColor: 'grey', padding: 10, listStyle: 'none'}}>
+    {messages.map((message, i) => {
+      return <MessageItem key={i} message={message} />
+    })}
+    {messages.length === 0 && <li>Pas de message 🎈</li>}
+  </ul>)
 }
 
 export default MessageList;

@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MessageItem = ({username, body}) => {
-    return (
-        <li style={{ backgroundColor: "white" }}>
-            <dl>
-                <dd>@{username}</dd>
-                <dt>{body}</dt>
-            </dl>
-        </li>
-    )
+const MessageItem = ({message}) => {
+  return (
+    <li style={{ marginBottom: 10, backgroundColor: 'white', padding: 10, borderRadius: 10}}>
+      <small>@{message.username}</small>
+      <div>{message.body}</div>
+    </li>
+  );
 }
 
 MessageItem.propTypes = {
-  username: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
+  message: PropTypes.object.isRequired,
 };
 
- export default MessageItem;
+export default MessageItem;

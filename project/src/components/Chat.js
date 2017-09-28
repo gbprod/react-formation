@@ -1,41 +1,30 @@
 import React, {Component} from 'react';
 import MessageList from './MessageList';
-import MessageBar from './MessageBar';
+import MessageBar from "./MessageBar";
 
-const chatStyle = {
-    borberRadius: 10,
-    fontFamily: "Monerrat",
-    width: 400,
-    backgroundColor: "#A2DED0",
-    padding: 10,
-    display: "flex",
-    flexDirection: 'column'
-};
+const chatStyle = {borderRadius: 10, fontFamily: 'Montserrat', width: 400, backgroundColor: '#A2DED0', padding: 10, display: 'flex', flexDirection: 'column'};
 
-class Chat extends Component{
-    constructor(props) {
-        super(props);
-        this.state = { messages: [] };
-    }
+class Chat extends Component {
+  constructor(props) {
+    super(props);
+    this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
 
-    addMessage = (message) => {
-        this.setState({
-            messages: this.state.messages.concat({
-                'username': 'gbprod',
-                'body': message
-            })
-        });
-    }
+    this.state = {messages: []};
+  }
 
-    render() {
-        return (
-            <div style={chatStyle}>
-                <h1>Joli Chat</h1>
-                <MessageList messages={this.state.messages} />
-                <MessageBar addMessage={this.addMessage} />
-            </div>
-        );
-    }
+  handleMessageSubmit(message) {
+    this.setState({messages: [...this.state.messages, {body: message, username: 'me'}]});
+  }
+
+  render() {
+    return (
+      <div style={chatStyle}>
+        <div style={{paddingLeft: 10, paddingTop: 10, fontSize: 30}}>👅 Joli</div>
+        <MessageList messages={this.state.messages} />
+        <MessageBar handleMessageSubmit={this.handleMessageSubmit} />
+      </div>
+    )
+  }
 }
 
 export default Chat;
