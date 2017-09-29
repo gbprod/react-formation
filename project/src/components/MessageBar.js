@@ -17,14 +17,14 @@ class MessageBar extends Component {
 
   handleKeyPress = (event) => {
       if(event.key == 'Enter') {
-        this.props.onAddMessage(this.state.message, 'me');
+        this.props.onAddMessage(this.state.message, this.props.username);
         this.setState({ message: '' });
       }
   }
 
   handleSubmit = () => {
     if (this.state.message !== '') {
-      this.props.onAddMessage(this.state.message, 'me');
+      this.props.onAddMessage(this.state.message, this.props.username);
       this.setState({ message: '' });
     }
   }

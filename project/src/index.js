@@ -6,11 +6,12 @@ import reducers from './reducers/index'
 import thunk from 'redux-thunk';
 import Chat from './components/Chat';
 import LoggerMiddleware from './middleware/logger'
+import {persistStore, autoRehydrate} from 'redux-persist'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     reducers,
-    composeEnhancers(applyMiddleware(thunk, LoggerMiddleware))
+    composeEnhancers(applyMiddleware(thunk, LoggerMiddleware), autoRehydrate())
 );
 
 
@@ -20,3 +21,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 );
+
+persistStore(store, { whitelist: 'settings' })

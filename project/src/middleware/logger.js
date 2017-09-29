@@ -1,7 +1,9 @@
 const LoggerMiddleware = store => next => action => {
   console.log('action', action)
-  next(action)
+  let result = next(action)
   console.log('state', store.getState())
+
+  return result
 }
 
 
