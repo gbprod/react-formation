@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import MessageList from './MessageList';
 import MessageBar from "./MessageBar";
-import SettingsBar from "./SettingsBar";
 import {connect} from 'react-redux'
 import {addMessage, getMessages} from '../actions/messages'
 import {setUsername} from '../actions/settings'
+import {Link} from 'react-router-dom'
 
 const chatStyle = {borderRadius: 10, fontFamily: 'Montserrat', width: 400, backgroundColor: '#A2DED0', padding: 10, display: 'flex', flexDirection: 'column'};
 
@@ -17,9 +17,9 @@ class Chat extends Component {
     return (
       <div style={chatStyle}>
         <div style={{paddingLeft: 10, paddingTop: 10, fontSize: 30}}>👅 Joli</div>
-        <SettingsBar settings={this.props.settings} setUsername={this.props.setUsername} />
         <MessageList messages={this.props.messages} />
         <MessageBar onAddMessage={this.props.onAddMessage} username={this.props.settings.username} />
+        <Link to="/settings">Settings</Link>
       </div>
     )
   }
@@ -39,9 +39,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     getMessages: () => {
       dispatch(getMessages())
-    },
-    setUsername: (username) => {
-      dispatch(setUsername(username))
     }
   }
 }
