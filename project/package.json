@@ -20,7 +20,7 @@
     "react-emoji-render": "^0.4.2",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-persist": "^4.8.0",
+    "redux-persist": "^4.10.1",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {

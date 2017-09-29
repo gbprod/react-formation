@@ -3076,7 +3076,7 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
-redux-persist@^4.8.0:
+redux-persist@^4.10.1:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.10.1.tgz#4fb2b789942f10f56d51cc7ad068d9d6beb46124"
   dependencies:
